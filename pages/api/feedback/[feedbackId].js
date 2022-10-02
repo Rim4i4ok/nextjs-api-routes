@@ -1,10 +1,9 @@
-import { buildFeedbackPath, extractFeedback } from ".";
+import { geFeedBackData } from "../../../utils/data";
 
 function handler(req, res) {
   const { feedbackId } = req.query;
 
-  const filePath = buildFeedbackPath();
-  const data = extractFeedback(filePath);
+  const data = geFeedBackData();
 
   const selectedFeedback = data.find((item) => item.id === feedbackId);
 

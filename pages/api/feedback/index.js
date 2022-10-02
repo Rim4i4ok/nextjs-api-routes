@@ -1,15 +1,5 @@
 import fs from "fs";
-import path from "path";
-
-export function buildFeedbackPath() {
-  return path.join(process.cwd(), "data", "feedback.json");
-}
-
-export function extractFeedback(filePath) {
-  const fileData = fs.readFileSync(filePath);
-
-  return JSON.parse(fileData);
-}
+import { buildFeedbackPath, geFeedBackData } from "../../../utils/data";
 
 function handler(req, res) {
   if (req.method === "POST") {
@@ -22,17 +12,16 @@ function handler(req, res) {
       text: feedbackText,
     };
 
-    const filePath = buildFeedbackPath();
-    const data = extractFeedback(filePath);
-
+    const data = geFeedBackData();
     data.push(newFeedback);
+
+    const filePath = buildFeedbackPath();
 
     fs.writeFileSync(filePath, JSON.stringify(data));
 
     res.status(201).json({ message: "Success!", feedback: newFeedback });
   } else {
-    const filePath = buildFeedbackPath();
-    const data = extractFeedback(filePath);
+    const data = geFeedBackData();
 
     res.status(200).json({ feedback: data });
   }

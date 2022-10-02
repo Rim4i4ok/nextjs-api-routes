@@ -1,5 +1,5 @@
 import { Fragment, useState } from "react";
-import { buildFeedbackPath, extractFeedback } from "../api/feedback";
+import { geFeedBackData } from "../../utils/data";
 
 function FeedbackPage(props) {
   const [selectedFeedback, setSelecteFeedback] = useState();
@@ -30,8 +30,7 @@ function FeedbackPage(props) {
 }
 
 export async function getStaticProps() {
-  const filePath = buildFeedbackPath();
-  const data = extractFeedback(filePath);
+  const data = geFeedBackData();
 
   return {
     props: {
