@@ -5,7 +5,7 @@ function FeedbackPage(props) {
   const [selectedFeedback, setSelecteFeedback] = useState();
 
   function loadFeedbackHandler(id) {
-    fetch(`/api/${id}`)
+    fetch(`/api/feedback/${id}`)
       .then((response) => response.json())
       .then((data) => {
         setSelecteFeedback(data.feedback);
